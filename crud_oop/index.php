@@ -3,12 +3,18 @@
 <html>
     <head>
         <title>CRUD PHP OOP</title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
         <main>
+            <form method='POST'>
+                <input type='hidden' name='acao' value='adicionar'>
+                <input type='text' name='C001_Titulo' placeholder='Título'><br>
+                <input type='text' name='C001_Autor' placeholder='Autor'><br>
+                <button type='submit'>Adicionar</button>
+            </form>
             <div class="container"> 
-                <table>
+                <table border="1">
                     <tr>
                         <th>Id</th>
                         <th>Título</th>

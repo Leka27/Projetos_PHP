@@ -23,14 +23,14 @@ class C001
                 $this->adicionarLivro($_POST['C001_Titulo'],$_POST['C001_Autor']);
             }
             
-            echo <<<EOT
-                <form method='POST'>
-                    <input type='hidden' name='acao' value='adicionar'>
-                    <input type='text' name='C001_Titulo' placeholder='Título'>
-                    <input type='text' name='C001_Autor' placeholder='Autor'>
-                    <button type='submit'>Adicionar</button>
-                </form>
-EOT;
+//             echo <<<EOT
+//                 <form method='POST'>
+//                     <input type='hidden' name='acao' value='adicionar'>
+//                     <input type='text' name='C001_Titulo' placeholder='Título'>
+//                     <input type='text' name='C001_Autor' placeholder='Autor'>
+//                     <button type='submit'>Adicionar</button>
+//                 </form>
+// EOT;
             if($sql->rowCount()){
                 while($data = $sql->fetch(PDO::FETCH_OBJ)){
                     echo <<<EOT

@@ -1,11 +1,11 @@
 .container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
 table {
     width: 40%;
-    margin: 100px auto;
+    margin: 100px;
     border-collapse: collapse;
 }
 
@@ -14,17 +14,16 @@ table tr {
     padding: 10px;
 }
 
-.form {
+form {
     width: 30%;
     margin: 0 auto;
-    background: red;
 }
 
-.form input {
+form input {
     padding: 10px;
     border: 1px solid silver;
     border-radius: 4px;
-    width: 30%;
+    width: 85%;
     margin: 10px;
 }
 

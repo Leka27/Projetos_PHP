@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>CRUD PHP OOP</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
     <body>
         <main>

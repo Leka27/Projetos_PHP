@@ -20,7 +20,7 @@ class C001
             // }
 
             if(isset($_POST['C001_Titulo'],$_POST['C001_Autor'])){
-                $this->adicionarLivro($_POST['C001_Titulo'],$_POST['C001_Autor']);
+                $this->adcionarLivro($_POST['C001_Titulo'],$_POST['C001_Autor']);
             }
             
             echo <<<EOT
@@ -39,8 +39,8 @@ EOT;
                             <td>$data->C001_Titulo</td>
                             <td>$data->C001_Autor</td>
                             <td>$data->C001_Flag_Status</td>
-                            <td><a href="editar.php?IdEditar={$data->C001_Id}"></a></td>
-                            <td><a href="delete.php?IdDeletar={$data->C001_Id}"></a></td>
+                            <td><a  href="editar.php?IdEditar={$data->C001_Id}"></a></td>
+                            <td><a onclick="return confirm('Tem certeza que quer deletar?')" href="delete.php?IdDeletar={$data->C001_Id}"></a></td>
                         </tr>
 EOT;
                 }
@@ -53,11 +53,11 @@ EOT;
     function adicionarLivro($titulo, $autor){
         try{
             if(!empty($titulo) && !empty($autor)){
-                $query = "INSERT INTO C001 (C001_Titulo,C001_Autor) values(?,?,?)";
+                $query = "INSERT INTO C001 (C001_Titulo,C001_Autor,C001_Data_Insercao) values(?,?,?)";
                 $sql = $this->_db->prepare($query);
                 $sql->bindParam(1,$titulo);
                 $sql->bindParam(2,$autor);
-                $sql->bindParam(3,date("Y-m-d"));
+                $sql->bindParam(1,date("Y-m-d"));
                 $sql->execute();
                 if($sql){
                     // echo "<script>alert('Adicionado com sucesso!')</script>";

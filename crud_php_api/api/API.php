@@ -23,13 +23,14 @@ class API{
     function fetch_all(){
         $query = "SELECT * FROM C003 ORDER BY C003_Id";
         $statement = $this->connect->prepare($query);
-        
+
         //Se query executada corretamente
         if($statement->execute()){
-
+            while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+                $data[] = $row;
+            }
         }
-
-
+        return $data;
     }
 
 }

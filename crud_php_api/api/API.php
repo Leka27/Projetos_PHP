@@ -32,7 +32,6 @@ class API{
         }
         return $data;
     }
-
 }
 
 ?>

@@ -17,7 +17,6 @@ echo <<<EOT
             </head>
             <body class="is-preload">
 EOT;
-echo "tipoSuporte:".$tipoLogin;
 
 if(!isset($_REQUEST['logar'])){
     echo <<<EOT
@@ -27,7 +26,7 @@ if(!isset($_REQUEST['logar'])){
                     <h2>SISTEMA SUPORTE LEGAL</h2>
                 </header>
                 <div class="highlights">
-                    <form method="post" action="login.php">
+                    <form style="margin-left:35%;" method="post" action="login.php">
                         <div class="row gtr-uniform">
                             <input type="hidden" name="logar" id="logar" value="true"/>
                             <input type="hidden" name="tipoLogin" id="tipoLogin" value="{$tipoLogin}"/>

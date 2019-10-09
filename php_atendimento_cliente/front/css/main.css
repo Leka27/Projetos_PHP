@@ -599,6 +599,7 @@ form {
 }
 
 input[type="text"],
+input[type="date"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -622,6 +623,7 @@ textarea {
 }
 
 input[type="text"]:invalid,
+input[type="date"]:invalid,
 input[type="password"]:invalid,
 input[type="email"]:invalid,
 input[type="tel"]:invalid,
@@ -639,6 +641,7 @@ label {
     margin: 0 0 1rem 0;
 }
 
+input[type="date"],
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -754,6 +757,7 @@ label {
 }
 
 input[type="text"],
+input[type="date"],
 input[type="password"],
 input[type="email"],
 input[type="tel"],
@@ -766,6 +770,7 @@ textarea {
 }
 
 input[type="text"]:focus,
+input[type="date"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
@@ -3447,6 +3452,7 @@ body.is-preload #banner:before {
 #footer input[type="password"],
 #footer input[type="email"],
 #footer input[type="tel"],
+#footer input[type="date"],
 #footer input[type="search"],
 #footer input[type="url"],
 #footer select,
@@ -3460,6 +3466,7 @@ body.is-preload #banner:before {
 #footer input[type="email"]:focus,
 #footer input[type="tel"]:focus,
 #footer input[type="search"]:focus,
+#footer input[type="date"]:focus,
 #footer input[type="url"]:focus,
 #footer select:focus,
 #footer textarea:focus {
@@ -3896,6 +3903,7 @@ body:before {
 #heading input[type="email"],
 #heading input[type="tel"],
 #heading input[type="search"],
+#heading input[type="date"],
 #heading input[type="url"],
 #heading select,
 #heading textarea {
@@ -3904,6 +3912,7 @@ body:before {
 }
 
 #heading input[type="text"]:focus,
+#heading input[type="date"]:focus,
 #heading input[type="password"]:focus,
 #heading input[type="email"]:focus,
 #heading input[type="tel"]:focus,

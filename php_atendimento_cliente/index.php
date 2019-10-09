@@ -1,3 +1,9 @@
+<?php
+  include("bibliotecas/FuncoesGerais.php");
+  $FuncoesGerais = new FUNCOESGERAIS();
+  $FuncoesGerais->logOut();
+  echo "suporte:".$_SESSION['usuarioId'];
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -16,7 +22,7 @@
 					<div class="highlights">
 						<section>
 							<div class="content">
-                                <a href="login.php?t='C'" class="icon fa-vcard-o">
+                                <a href="login.php?t=C" class="icon fa-vcard-o">
                                     <span class="label">icone</span>
                                     <h3>Cliente</h3>
                                 </a>
@@ -24,7 +30,7 @@
 						</section>
 						<section>
 							<div class="content">
-                                <a href="login.php?t='S'" class="icon fa-vcard-o">
+                                <a href="login.php?t=S" class="icon fa-vcard-o">
                                     <span class="label">icone</span>
                                     <h3>Suporte</h3>
                                 </a>

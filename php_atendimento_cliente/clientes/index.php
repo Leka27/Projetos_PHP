@@ -1,11 +1,19 @@
 <?php
-  $login_cookie = $_COOKIE['login'];
-    if(isset($login_cookie)){
-      echo"Bem-Vindo, $login_cookie <br>";
-      echo"Essas informações <font color='red'>PODEM</font> ser acessadas por você";
-    }else{
-      echo"Bem-Vindo, convidado <br>";
-      echo"Essas informações <font color='red'>NÃO PODEM</font> ser acessadas por você";
-      echo"<br><a href='login.html'>Faça Login</a> Para ler o conteúdo";
-    }
+  include_once('menu.php');
+  $tituloPagina = "Pagina inicial";
 ?>
+			<section class="wrapper"  style='margin-left:10%;'>
+				<div class="inner">
+					<header class="special">
+                        <h2>Bem vindo Cliente <?php echo $_SESSION['usuarioNome']; ?></h2>
+                        <p>Por favor desfrute das funcionalidades do nosso sistema.</p>
+					</header>
+				</div>
+			</section>
+			<script src="../front/js/jquery.min.js"></script>
+			<script src="../front/js/browser.min.js"></script>
+			<script src="../front/js/breakpoints.min.js"></script>
+			<script src="../front/js/util.js"></script>
+			<script src="../front/js/main.js"></script>
+	</body>
+</html>

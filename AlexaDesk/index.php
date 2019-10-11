@@ -15,13 +15,13 @@
 			<section class="wrapper">
 				<div class="inner">
 					<header class="special">
-						<h2>Entre para conhecer o SISTEMA SUPORTE LEGAL.</h2>
+						<h2>Entre para conhecer o SISTEMA AlexaDesk.</h2>
 						<p>Escolha a forma que deseja fazer o login:</p>
 					</header>
 					<div class="highlights">
 						<section>
 							<div class="content">
-                                <a href="login.php?t=C" class="icon fa-vcard-o">
+                                <a href="login.php?t=cliente" class="icon fa-vcard-o">
                                     <span class="label">icone</span>
                                     <h3>Cliente</h3>
                                 </a>
@@ -44,10 +44,10 @@
 			</footer>
 
 		    <!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="front/js/jquery.min.js"></script>
+			<script src="front/js/browser.min.js"></script>
+			<script src="front/js/breakpoints.min.js"></script>
+			<script src="front/js/util.js"></script>
+			<script src="front/js/main.js"></script>
 	</body>
 </html>

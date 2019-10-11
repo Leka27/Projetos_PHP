@@ -1,6 +1,7 @@
 <?php
 
-session_start();   
+session_start();
+
 
 class FuncoesGerais{
     public $connect = "";
@@ -8,21 +9,26 @@ class FuncoesGerais{
     //Ao instanciar a classe irá iniciar a conexao com banco
     function __construct()
     {
-        $this->connect = $this->conexaoBanco();
+        include("../configuracoes/ConfGeral.php");
+        $ConfGeral = new ConfGeral();
+        $dbname = $ConfGeral->getDbDatabase();
+        $user = $ConfGeral->getDbUser();
+        $pw = $ConfGeral->getDbPass();
+        $host = $ConfGeral->getDbHost();
+        $this->connect = $this->conexaoBanco($dbname,$user,$pw,$host);
     }
 
     //Função que realiza a conexao com banco de dados
-    function conexaoBanco(){
-        $host="192.168.100.71";
-        $dbname = "php_atendimento";
-        $user = "root";
-        $pw = "root";
+    function conexaoBanco($dbname,$user,$pw,$host){
+        // $host="192.168.100.71";
+        // $dbname = "php_atendimento";
+        // $user = "root";
+        // $pw = "root";
         $conn = mysqli_connect($host,$user,$pw,$dbname);
 
         // Check connection
         if (mysqli_connect_errno()){
-            die("Conexão com banco de dados não realizada, por favor contacte o suporte e informe 
-            a seguinte mensagem:" . mysqli_connect_error());
+            die("Conexão com banco de dados não realizada, por favor contacte o suporte técnico e informe a seguinte mensagem:" . mysqli_connect_error());
         }else{
             return $conn;
         }
@@ -139,7 +145,30 @@ class FuncoesGerais{
         return date("Y-m-d", $data);
     }
 
-    function loginUsuario($tipoLogin = "S"){
+    function loginUsuario($login,$senha,$tabela = "suporte"){
+        $arrayRetorno = array();
+
+        if(empty($login) || empty($senha)){
+            $arrayRetorno['code'] = false;
+            $arrayRetorno['retorno'] = "Campo email e senha campos são obrigatórios!";
+            $arrayRetorno['redirecionar'] = "login.php?t={$tabela}";
+            return $arrayRetorno;
+        }
+
+        $retorno = $this->selecionarDados($tabela,"*","","{$tabela}_login='{$login}' AND {$tabela}_senha='{$senha}'");
+        if(is_array($retorno)){
+            $arrayRetorno['code'] = true;
+            $arrayRetorno['retorno'] = $retorno;
+            $arrayRetorno['redirecionar'] = "./{$tabela}/index.php";
+        }else{
+            $arrayRetorno['code'] = false;
+            $arrayRetorno['retorno'] = "Email ou senha incorretos tente novamente!";
+            $arrayRetorno['redirecionar'] = "login.php?t={$tabela}";
+        }
+        return $arrayRetorno;
+    }
+
+    function enviarEmail(){
 
     }
 

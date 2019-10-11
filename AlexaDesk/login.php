@@ -3,15 +3,15 @@
 include("bibliotecas/classes/FuncoesGerais.php");
 $FuncoesGerais = new FuncoesGerais();
 
-if(isset($_REQUEST['t']) && ($_REQUEST['t']=="C")){
+if(isset($_REQUEST['t']) && ($_REQUEST['t']=="cliente")){
     $tipoLogin = $_REQUEST['t'];
-}else if(isset($_POST['tipoLogin']) && ($_POST['t']=="C")){
+}else if(isset($_POST['tipoLogin']) && ($_POST['t']=="cliente")){
     $tipoLogin = $_POST['tipoLogin'];
 }else{
-    $tipoLogin = "S";
+    $tipoLogin = "suporte";
 }
+?>
 
-echo <<<EOT
     <!DOCTYPE HTML>
     <html>
         <head>
@@ -28,12 +28,14 @@ echo <<<EOT
             <link rel="stylesheet" href="/resources/demos/style.css">
             <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="cliente/funcoes.js"></script>
+            <script src="suporte/funcoes.js"></script>
         </head>
         <body class="is-preload">
             <section class="wrapper" style="margin-left:15% !important;">
                 <div class="inner">
                     <header class="special" style="text-align:left !important;">
-                        <h2>SISTEMA SUPORTE LEGAL</h2>
+                        <h2>Sistema AlexaDesk</h2>
                     </header>
                     <div class="highlights">
                         <form class="row gtr-uniform" method="post" action="login.php">
@@ -57,73 +59,71 @@ echo <<<EOT
             </section>
         </body>
     </html>
-EOT;
 
-if(isset($_POST['logar'])){
-    $login = $_POST['login'];
-    $senha = md5($_POST['senha']);
-    if(empty($login) || empty($senha)){
-        $mensagem = "Ambos campos são obrigatórios!";
-        $js = "location.href='login.php?t={$tipoLogin}';";
-    }else{
-        if($tipoLogin=="S"){
-            $retorno = $FuncoesGerais->selecionarDados("suporte","*","","suporte_login='{$login}' AND suporte_senha='{$senha}'");
-            if(is_array($retorno)){
-                session_start(); 
-                $_SESSION['usuarioId'] = $retorno[0]['suporte_id'];
-                $_SESSION['usuarioNome'] = $retorno[0]['suporte_nome'];
-                $_SESSION['tipoLogin'] = $tipoLogin;
-                $mensagem = "Login realizado com sucesso!";
-                $js = "location.href='./suporte/index.php';";
-            }else{
-                $mensagem = "Email ou senha incorretos tente novamente!";
-                $js = "location.href='login.php?t={$tipoLogin}';";
-            }
-        }else if($tipoLogin=="C"){
-            $retorno = $FuncoesGerais->selecionarDados("cliente","*","","cliente_login='{$login}' AND cliente_senha='{$senha}'");
-            if(is_array($retorno)){
-                session_start(); 
-                $_SESSION['usuarioId'] = $retorno[0]['cliente_id'];
-                $_SESSION['usuarioNome'] = $retorno[0]['cliente_nome'];
-                $_SESSION['tipoLogin'] = $tipoLogin;
-                $mensagem = "Login realizado com sucesso!";
-                $js = "location.href='./clientes/index.php';";
-            }else{
-                $mensagem = "Email ou senha incorretos tente novamente!";
-                $js = "location.href='login.php?t={$tipoLogin}';";
-            }
-        }else{
-            $mensagem = "Não identificado tipo de login, selecione a forma que deseja entrar no sistema!";
-            $js = "location.href='index.php';";
-        }
-    }
-}
-    echo <<<EOT
-        <div id="dialog-confirm" title="">
-            <p>
-                {$mensagem}
-            </p>
-        </div> 
-        <script>
-            $( function() {
-                $( "#dialog-confirm" ).dialog({
-                resizable: false,
-                height: 200,
-                width: 400,
-                modal: true,
-                buttons: {
-                    "Ok": function() {
-                        $( this ).dialog( "close" );
-                        {$js}
-                    }
+    <div id="dialog-confirm" title="">
+        <p></p>
+    </div> 
+    <script>
+        $( function() {
+            $( "#dialog-confirm" ).dialog({
+            resizable: false,
+            height: 200,
+            width: 400,
+            modal: true,
+            buttons: {
+                "Ok": function() {
+                    $( this ).dialog( "close" );
+                    {$js}
                 }
-                });
-            });
-            if('{$tipoLogin}'=='C'){
-                $('.actions').append('<hr><ul class="actions"><li><a type="">Cadastre-se</a></li><li><a type="">Esqueci senha</a></li></ul>');
             }
-        </script>
-EOT;
+            });
+        });
+        if('{$tipoLogin}'=='C'){
+            $('.actions').append('<hr><ul class="actions"><li><a type="">Cadastre-se</a></li><li><a type="">Esqueci senha</a></li></ul>');
+        }
+    </script>
+
+<!--if(isset($_POST['logar'])){
+//     $login = $_POST['login'];
+//     $senha = md5($_POST['senha']);
+//     if(empty($login) || empty($senha)){
+//         $mensagem = "Ambos campos são obrigatórios!";
+//         $js = "location.href='login.php?t={$tipoLogin}';";
+//     }else{
+//         if($tipoLogin=="S"){
+//             $retorno = $FuncoesGerais->selecionarDados("suporte","*","","suporte_login='{$login}' AND suporte_senha='{$senha}'");
+//             if(is_array($retorno)){
+//                 session_start(); 
+//                 $_SESSION['usuarioId'] = $retorno[0]['suporte_id'];
+//                 $_SESSION['usuarioNome'] = $retorno[0]['suporte_nome'];
+//                 $_SESSION['tipoLogin'] = $tipoLogin;
+//                 $mensagem = "Login realizado com sucesso!";
+//                 $js = "location.href='./suporte/index.php';";
+//             }else{
+//                 $mensagem = "Email ou senha incorretos tente novamente!";
+//                 $js = "location.href='login.php?t={$tipoLogin}';";
+//             }
+//         }else if($tipoLogin=="C"){
+//             $retorno = $FuncoesGerais->selecionarDados("cliente","*","","cliente_login='{$login}' AND cliente_senha='{$senha}'");
+//             if(is_array($retorno)){
+//                 session_start(); 
+//                 $_SESSION['usuarioId'] = $retorno[0]['cliente_id'];
+//                 $_SESSION['usuarioNome'] = $retorno[0]['cliente_nome'];
+//                 $_SESSION['tipoLogin'] = $tipoLogin;
+//                 $mensagem = "Login realizado com sucesso!";
+//                 $js = "location.href='./clientes/index.php';";
+//             }else{
+//                 $mensagem = "Email ou senha incorretos tente novamente!";
+//                 $js = "location.href='login.php?t={$tipoLogin}';";
+//             }
+//         }else{
+//             $mensagem = "Não identificado tipo de login, selecione a forma que deseja entrar no sistema!";
+//             $js = "location.href='index.php';";
+//         }
+//     }
+// }-->
+   
+        
 
 
 

@@ -1,4 +1,5 @@
 <?php
+
 class confGeral{
     private $dbDatabase;
     private $dbHost;
@@ -14,7 +15,7 @@ class confGeral{
         $this->setDbHost($confEmpresa['dbHost']);
         $this->setDbPass($confEmpresa['dbUser']);
         $this->setDbUser($confEmpresa['dbPass']);
-        $this->setPathRaiz($confEmpresa['pathRaiz']);
+        // $this->setPathRaiz($confEmpresa['pathRaiz']);
         $this->setUrlRaiz($confEmpresa['urlRaiz']);
     }
 

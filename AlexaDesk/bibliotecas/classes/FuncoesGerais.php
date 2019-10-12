@@ -1,16 +1,14 @@
 <?php
 
-session_start();
-
-
 class FuncoesGerais{
     public $connect = "";
 
     //Ao instanciar a classe irá iniciar a conexao com banco
     function __construct()
     {
-        include("../configuracoes/ConfGeral.php");
+        include($_SERVER['DOCUMENT_ROOT']."/AlexaDesk/bibliotecas/configuracoes/ConfGeral.php");
         $ConfGeral = new ConfGeral();
+        
         $dbname = $ConfGeral->getDbDatabase();
         $user = $ConfGeral->getDbUser();
         $pw = $ConfGeral->getDbPass();
@@ -37,11 +35,12 @@ class FuncoesGerais{
     
     function verificaSessao(){
         session_start();
-        if(!isset($_SESSION['usuarioId'])){
+        echo "teste";
+        if(!isset($_SESSION['tipoLogin'])){
             session_destroy();
             unset($_SESSION);
             $this->connect->close();
-            header('location:../../index.php');
+            header('location: /AlexaDesk/index.php');
         }
     }
 
@@ -150,12 +149,12 @@ class FuncoesGerais{
 
         if(empty($login) || empty($senha)){
             $arrayRetorno['code'] = false;
-            $arrayRetorno['retorno'] = "Campo email e senha campos são obrigatórios!";
+            $arrayRetorno['retorno'] = "Email e senha campos são obrigatórios!";
             $arrayRetorno['redirecionar'] = "login.php?t={$tabela}";
             return $arrayRetorno;
         }
 
-        $retorno = $this->selecionarDados($tabela,"*","","{$tabela}_login='{$login}' AND {$tabela}_senha='{$senha}'");
+        $retorno = $this->selecionarDados($tabela,"*","","{$tabela}_login='{$login}' AND {$tabela}_senha=md5('{$senha}')");
         if(is_array($retorno)){
             $arrayRetorno['code'] = true;
             $arrayRetorno['retorno'] = $retorno;
@@ -169,6 +168,10 @@ class FuncoesGerais{
     }
 
     function enviarEmail(){
+
+    }
+
+    function tratarDados($tipo,$string){
 
     }
 

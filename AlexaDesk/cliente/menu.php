@@ -2,7 +2,8 @@
   include("../bibliotecas/classes/FuncoesGerais.php");
   $FuncoesGerais = new FuncoesGerais();
   $FuncoesGerais->verificaSessao();
-  echo "suporte:".$_SESSION['usuarioId'];
+  include($_SERVER['DOCUMENT_ROOT']."/AlexaDesk/bibliotecas/classes/Cliente.php");
+  $Cliente = new Cliente();
 
 ?>
 <!DOCTYPE HTML>
@@ -22,7 +23,7 @@
 			</header>
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="../chamados/grid.php">Chamados</a></li>
+					<li><a href="../chamados/index.php">Chamados</a></li>
 					<li><a href="../perguntasFrequentes/grid.php">FAQ</a></li>
 					<li><a href="../clientes/perfil.php">Perfil</a></li>
 					<li><a href="../index.php">Log Out</a></li>

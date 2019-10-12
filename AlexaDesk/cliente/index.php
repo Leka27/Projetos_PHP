@@ -1,11 +1,13 @@
 <?php
   include_once('menu.php');
   $tituloPagina = "Pagina inicial";
+  echo "senha:".$Cliente->gerarSenhaAleatoria(10,true,true);
+
 ?>
 			<section class="wrapper"  style='margin-left:10%;'>
 				<div class="inner">
 					<header class="special">
-                        <h2>Bem vindo Cliente <?php echo $_SESSION['usuarioNome']; ?></h2>
+                        <h2>Bem vindo Cliente <?php echo $_SESSION['cliente_nome']; ?></h2>
                         <p>Por favor desfrute das funcionalidades do nosso sistema.</p>
 					</header>
 				</div>

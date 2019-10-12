@@ -1,10 +1,10 @@
 <?php
-include("../bibliotecas/classes/FuncoesGerais.php");
+
+include($_SERVER['DOCUMENT_ROOT']."/AlexaDesk/bibliotecas/classes/FuncoesGerais.php");
 $FuncoesGerais = new FuncoesGerais();
 
-include("../bibliotecas/classes/Clientes.php");
-$Clientes = new Clientes();
-
+include($_SERVER['DOCUMENT_ROOT']."/AlexaDesk/bibliotecas/classes/Cliente.php");
+$Cliente = new Cliente();
 switch ($_POST['acao']) {
     case 'login':
         $login = $_POST['login'];
@@ -12,15 +12,15 @@ switch ($_POST['acao']) {
         $tipoLogin = $_POST['tipoLogin'];
         //arrumar o retorno para criar a sessao e o retorno do javascript
         $retorno = $FuncoesGerais->loginUsuario($login,$senha,$tipoLogin);
-        session_start(); 
-        $_SESSION['cliente_Id'] = $retorno['retorno'][0]['cliente_id'];
-        $_SESSION['cliente_nome'] = $retorno['retorno'][0]['cliente_nome'];
-        $_SESSION['tipoLogin'] = $tipoLogin;
-
-
+        
+        if($retorno['code']===true){
+            session_start(); 
+            $_SESSION['cliente_Id'] = $retorno['retorno'][0]['cliente_id'];
+            $_SESSION['cliente_nome'] = $retorno['retorno'][0]['cliente_nome'];
+            $_SESSION['tipoLogin'] = $tipoLogin;
+        }
+           
         echo json_encode($retorno);
-        heade("Location: {$retorno['redirecionar']}");
-
         break;
     case 'buscarCliente':
         $id_cliente = $_POST['id'];
@@ -45,9 +45,26 @@ switch ($_POST['acao']) {
     case 'deletar':
         # code...
         break;
-
     case 'esqueciSenha':
-        # code...
+        $retorno = array();
+        
+        $cpf = $_POST['cpf'];
+        if(empty($cpf)){
+            $retorno['code']=false;
+            $retorno['retorno']="Campo obrigatório!";
+        }else{
+            $cliente = $FuncoesGerais->selecionarDados("cliente","cliente_nome,cliente_id,cliente_login","","cliente_cpf='{$cpf}'");
+            if(is_array($cliente)){
+                $novaSenha = $Cliente->gerarSenhaAleatoria(10,true,true,true);
+                $retorno = $Cliente->montarEmail();
+            }else{
+                $retorno['code']=false;
+                $retorno['retorno']="Não encontramos nenhum cliente com esse CPF, por favor tente novamente.";
+            }
+        }
+        
+        echo json_encode($retorno);
+    
         break;
     default:
         echo "Ação não encontrada";

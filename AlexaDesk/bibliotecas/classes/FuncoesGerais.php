@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class FuncoesGerais{
     public $connect = "";
@@ -18,10 +19,6 @@ class FuncoesGerais{
 
     //Função que realiza a conexao com banco de dados
     function conexaoBanco($dbname,$user,$pw,$host){
-        // $host="192.168.100.71";
-        // $dbname = "php_atendimento";
-        // $user = "root";
-        // $pw = "root";
         $conn = mysqli_connect($host,$user,$pw,$dbname);
 
         // Check connection
@@ -35,7 +32,6 @@ class FuncoesGerais{
     
     function verificaSessao(){
         session_start();
-        echo "teste";
         if(!isset($_SESSION['tipoLogin'])){
             session_destroy();
             unset($_SESSION);
@@ -62,7 +58,7 @@ class FuncoesGerais{
     }
 
     function deletarDados($tabela,$where){
-        $sql = "DELETE FROM {$tabela} {$where}";
+        $sql = "DELETE FROM {$tabela} WHERE {$where}";
 
         if ($this->connect->query($sql) === TRUE) {
             return true;
@@ -72,12 +68,12 @@ class FuncoesGerais{
     }
 
     function alterarDados($tabela,$campos,$where){
-        $sql = "UPDATE {$tabela} SET {$campos} {$where}";
+        $sql = "UPDATE {$tabela} SET {$campos} WHERE {$where}";
 
         if ($this->connect->query($sql) === TRUE) {
             return true;
         } else {
-            return "Erro ao deletar dados: " . $sql . "<br> Erro:" . $this->connect->error;
+            return "Erro ao alterar dados: " . $sql . "<br> Erro:" . $this->connect->error;
         }
     }
 
@@ -153,8 +149,8 @@ class FuncoesGerais{
             $arrayRetorno['redirecionar'] = "login.php?t={$tabela}";
             return $arrayRetorno;
         }
-
-        $retorno = $this->selecionarDados($tabela,"*","","{$tabela}_login='{$login}' AND {$tabela}_senha=md5('{$senha}')");
+        $senha = base64_encode($senha);
+        $retorno = $this->selecionarDados($tabela,"*","","{$tabela}_login='{$login}' AND {$tabela}_senha='{$senha}'");
         if(is_array($retorno)){
             $arrayRetorno['code'] = true;
             $arrayRetorno['retorno'] = $retorno;
@@ -167,11 +163,23 @@ class FuncoesGerais{
         return $arrayRetorno;
     }
 
-    function enviarEmail(){
-
+    function mascaraDados($val, $mask){
+        $maskared = '';
+        $k = 0;
+    
+        for($i = 0; $i<=strlen($mask)-1; $i++){
+            if($mask[$i] == '#'){
+                if(isset($val[$k]))
+                $maskared .= $val[$k++];
+            }else {
+                if(isset($mask[$i]))
+                $maskared .= $mask[$i];
+            }
+        }
+        return $maskared;
     }
 
-    function tratarDados($tipo,$string){
+    function enviarEmail(){
 
     }
 

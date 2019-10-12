@@ -1,7 +1,7 @@
 <?php
   include_once('menu.php');
   $tituloPagina = "Pagina inicial";
-  echo "senha:".$Cliente->gerarSenhaAleatoria(10,true,true);
+  
 
 ?>
 			<section class="wrapper"  style='margin-left:10%;'>

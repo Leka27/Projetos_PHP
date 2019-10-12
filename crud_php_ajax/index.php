@@ -1,8 +1,24 @@
 
 <?php
 $connect = mysqli_connect("192.168.100.71","root","root","teste_crud");
-$query = mysqli_query($connect,"SELECT * FROM usuario")
+$query = mysqli_query($connect,"SELECT * FROM usuario");
+function validaEmail($email) {
+    $conta = "^[a-zA-Z0-9\._-]+@";
+    $domino = "[a-zA-Z0-9\._-]+.";
+    $extensao = "([a-zA-Z]{2,4})$";
+    $pattern = $conta.$domino.$extensao;
+    if (preg_match($pattern, $email)){
+        return true;
+    } else{
+        return false;
+    }
+}
 
+if(filter_var("alexamahara@",FILTER_VALIDATE_EMAIL)){
+    echo "Email correto";
+}else{
+    echo "Email incorreto";
+}
 ?>
 
 <!doctype html>

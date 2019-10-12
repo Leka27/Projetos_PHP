@@ -62,12 +62,16 @@
                 </div>
             </div>
         </section>
+        <?php
+            if($tipoLogin=="cliente"){
+                //Procurar depois uma forma melhor de fazer isso
+                $acao = "esqueciSenha";
+                include('cliente/form.php');
+                $acao = "cadastrar";
+                include('cliente/form.php');
+            }
+        ?>
     </body>
 </html>
-<div style="display:none"></div>
-<?php
-    if($tipoLogin=="cliente"){
-        include('cliente/form.php');
-    }
-?>
+
 

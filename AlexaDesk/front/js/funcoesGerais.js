@@ -40,12 +40,8 @@ $(document).ready(function() {
         });
     });
 
-
     if ($('#tipoLogin').val() == 'cliente') {
         $('.actions').append('<hr><ul class="actions"><li><button type="button" data-toggle="modal" data-target="#dialogCadastrarCliente" class="btn btn-warning">Cadastre-se</button></li><li><button type="button" data-toggle="modal" data-target="#dialogEsqueciSenha" class="btn btn-warning">Esqueci senha</button></li></ul>');
     }
-
-
-
 
 });

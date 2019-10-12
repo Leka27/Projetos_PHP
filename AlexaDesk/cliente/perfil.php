@@ -1,7 +1,7 @@
 <?php
-  include_once('menu.php');
   $tituloPagina = "Perfil";
-  $cliente = $FuncoesGerais->selecionarDados("cliente","*","","cliente_id='{$_SESSION['usuarioId']}'");
+  include_once('menu.php');
+  $cliente = $FuncoesGerais->selecionarDados("cliente","*","","cliente_id='{$_SESSION['cliente_id']}'");
 ?>
 			<section class="wrapper"  style='margin-left:10%;'>
 				<div class="inner">
@@ -15,15 +15,13 @@
 						<li><b>Telefone:</b> <?php echo $cliente[0]['cliente_telefone']; ?></li>
 						<li><b>Nascimento:</b> <?php echo $FuncoesGerais->corrigeData($cliente[0]['cliente_data_nascimento']); ?></li>
 						<li><b>Cadastro:</b> <?php echo $FuncoesGerais->corrigeData($cliente[0]['cliente_data_cadastro']); ?></li>
-						<li><a href="form.php?acao=a&i=<?php echo$cliente[0]['cliente_id']; ?>" class="button primary">Alterar</a></li>
+						<li><button type="button" data-toggle="modal" data-target="#dialogAlterarCliente" idCliente="<?php echo $cliente[0]['cliente_id'] ?>" id="btn_form_editar_cliente" class="primary">Alterar</button></li>
 					</ul>
 				</div>
 			</section>
-			
-			<script src="../front/js/jquery.min.js"></script>
-			<script src="../front/js/browser.min.js"></script>
-			<script src="../front/js/breakpoints.min.js"></script>
-			<script src="../front/js/util.js"></script>
-			<script src="../front/js/main.js"></script>
 	</body>
 </html>
+<?php
+	$acao = "alterar";
+    include('form.php');
+?>

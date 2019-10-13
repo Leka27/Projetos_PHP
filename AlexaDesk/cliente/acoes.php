@@ -32,10 +32,19 @@ switch ($_POST['acao']) {
 
         break;
     case 'buscarClientes':
-        $filtro = $_POST['filtro'];
-        $cliente = $FuncoesGerais->selecionarDados("cliente","*","","{$filtro}");
-        echo json_encode($cliente[0]);
+        $filtro="";
+        if(isset($_POST['tipoFiltro']) && (isset($_POST['filtro']) && !empty($_POST['filtro']))){
+            $campoFiltro = $_POST['tipoFiltro'];
+            $filtro = "cliente_{$campoFiltro} like '%{$_POST['filtro']}%'";
+        }
+        
+        $cliente['retorno'] =  $FuncoesGerais->selecionarDados("cliente","*","","{$filtro}");
 
+        if($cliente['retorno']==0){
+            echo 0;
+        }else {
+            echo json_encode($cliente);
+        }  
         break;
     case 'cadastrar':
         $retorno = array();
@@ -46,8 +55,8 @@ switch ($_POST['acao']) {
             $nome = $_POST['nome'];
             $cpf = str_replace(".","",$_POST['cpf']);
             $cpf = str_replace("-","",$cpf);
-            $cpf = $Cliente->mascaraDados($cpf,'###.###.###-##');
-            $senha = base64($_POST['senhaCadastro']);
+            $cpf = $FuncoesGerais->mascaraDados($cpf,'###.###.###-##');
+            $senha = base64_encode($_POST['senhaCadastro']);
             $confirmarSenha = $_POST['confirmarSenha'];
             $login = $_POST['loginCadastro'];
             $data_nascimento = $_POST['data_nascimento'];
@@ -114,7 +123,6 @@ switch ($_POST['acao']) {
         echo json_encode($retorno);
         break;
     case 'deletar':
-        # code...
         break;
     case 'esqueciSenha':
         $retorno = array();
@@ -135,12 +143,13 @@ switch ($_POST['acao']) {
         }
         
         echo json_encode($retorno);
-    
         break;
-    // default:
-    //     echo "Ação não encontrada";
-    //     header("Location: pagina404.html");
-    //     break;
+    default:
+       
+        $retorno['code']=false;
+        $retorno['retorno']="Método não encontrado.";
+        echo json_encode($retorno);
+        break;
 }
 
 

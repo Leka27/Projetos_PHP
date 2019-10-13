@@ -1,7 +1,9 @@
 $(document).ready(function() {
+    carregarClientes();
     $('#btn_enviar_senha').on('click', function(event) {
         var formdata = new FormData($("#form-esqueci-senha")[0]);
-        var link = "cliente/acoes.php";
+        var link = $('#form-esqueci-senha').attr('acaoLink');
+        // var link = 'cliente/acoes.php';
         var dialog = $("#dialog-confirm");
         if ($("#dialog-confirm").length == 0) {
             dialog = $('<div id="dialog-confirm" style="display:hidden"></div>').appendTo('body');
@@ -39,18 +41,18 @@ $(document).ready(function() {
 
     $('#btn_cadastrar_cliente').on('click', function(event) {
         var formdata = new FormData($("#form-cadastrar_cliente")[0]);
-        var link = "cliente/acoes.php";
+        var link = $('#form-cadastrar_cliente').attr('acaoLink');
         var dialog = $("#dialog-confirm");
         if ($("#dialog-confirm").length == 0) {
             dialog = $('<div id="dialog-confirm" style="width:400px;display:hidden"></div>').appendTo('body');
         }
-        formdata.append('nome', $('#nome').val());
-        formdata.append('cpf', $('#cpf').val());
-        formdata.append('telefone', $('#telefone').val());
+        formdata.append('nome', $('#nomeCadastro').val());
+        formdata.append('cpf', $('#cpfCadastro').val());
+        formdata.append('telefone', $('#telefoneCadastro').val());
         formdata.append('senhaCadastro', $('#senhaCadastro').val());
         formdata.append('confirmarSenha', $('#confirmarSenha').val());
         formdata.append('loginCadastro', $('#loginCadastro').val());
-        formdata.append('data_nascimento', $('#data_nascimento').val());
+        formdata.append('data_nascimento', $('#data_nascimentoCadastro').val());
         $('#dialogCadastrarCliente').modal('hide');
         $.ajax({
             type: 'POST',
@@ -74,11 +76,19 @@ $(document).ready(function() {
                         "Ok": function() {
                             $(this).dialog("close");
                             $("#form-cadastrar_cliente")[0].reset();
+                            window.location.href = window.location.href;
                         }
                     }
                 })
             );
         });
+    });
+
+    $('#btn_filtrar_clientes').on('click', function(event) {
+        var filtro = $('#filtroClientes').val();
+        var tipoFiltro = $('#tipoFiltro').val();
+        carregarClientes(filtro, tipoFiltro);
+        var filtro = $('#filtroClientes').val("");
     });
 
     $('#btn_form_editar_cliente').on('click', function(event) {
@@ -92,10 +102,10 @@ $(document).ready(function() {
             dataType: "json"
         }).done(function(data) {
             $("#cliente_id").val(data[0].cliente_id);
-            $("#nome").val(data[0].cliente_nome);
-            $("#cpf").val(data[0].cliente_cpf);
-            $("#telefone").val(data[0].cliente_telefone);
-            $("#data_nascimento").val(data[0].cliente_data_nascimento);
+            $("#nomeAlterar").val(data[0].cliente_nome);
+            $("#cpfAlterar").val(data[0].cliente_cpf);
+            $("#telefoneAlterar").val(data[0].cliente_telefone);
+            $("#data_nascimentoAlterar").val(data[0].cliente_data_nascimento);
             $("#loginAlterar").val(data[0].cliente_login);
             $("#senhaAlterar").val(data[0].cliente_senha);
         });
@@ -108,15 +118,14 @@ $(document).ready(function() {
         if ($("#dialog-confirm").length == 0) {
             dialog = $('<div id="dialog-confirm" style="width:400px;display:hidden"></div>').appendTo('body');
         }
-        formdata.append('nome', $('#nome').val());
+        formdata.append('nome', $('#nomeAlterar').val());
         formdata.append('cliente_id', $('#cliente_id').val());
-        formdata.append('cpf', $('#cpf').val());
-        formdata.append('telefone', $('#telefone').val());
+        formdata.append('cpf', $('#cpfAlterar').val());
+        formdata.append('telefone', $('#telefoneAlterar').val());
         formdata.append('senhaCadastro', $('#senhaAlterar').val());
         formdata.append('loginCadastro', $('#loginAlterar').val());
-        formdata.append('data_nascimento', $('#data_nascimento').val());
+        formdata.append('data_nascimento', $('#data_nascimentoAlterar').val());
         formdata.append('acao', $('#acao').val());
-        formdata.append('cpf', $('#cpf').val());
         $('#dialogAlterarCliente').modal('hide');
         $.ajax({
             type: 'POST',
@@ -146,10 +155,33 @@ $(document).ready(function() {
         });
     });
 
-
-
-
-
-
+    function carregarClientes(filtro = '', tipoFiltro = '') {
+        var link = "acoes.php";
+        $.ajax({
+            type: 'POST',
+            url: link,
+            data: { acao: "buscarClientes", filtro: filtro, tipoFiltro: tipoFiltro },
+            dataType: "json"
+        }).success(function(data) {
+            var html = "";
+            if (data == 0) {
+                html = "<tr><td colspan='4'>Nenhum cliente encontrado</td></tr>";
+            } else {
+                $.each(data.retorno, function(i, item) {
+                    html = html + "<tr>" +
+                        "<td>" + data.retorno[i].cliente_id + "</td>" +
+                        "<td>" + data.retorno[i].cliente_nome + "</td>" +
+                        "<td>" + data.retorno[i].cliente_cpf + "</td>" +
+                        "<td>" + data.retorno[i].cliente_login + "</td>" +
+                        // Nao deu certo ainda, tentar de outra forma
+                        "<td><button type='button' data-toggle='modal' data-target='#dialogAlterarCliente' idCliente=" + data.retorno[i].cliente_id +
+                        " id='btn_form_editar_cliente' class='btn btn-default'>Alterar</button></td>" +
+                        "<td><a href='perfil.php?id=" + data.retorno[i].cliente_id + "' class='primary'>Perfil</a></td>" +
+                        "</tr>";
+                });
+            }
+            $("#tabelaClientes tbody").html(html);
+        });
+    }
 
 });

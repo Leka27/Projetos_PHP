@@ -64,6 +64,7 @@
         </section>
         <?php
             if($tipoLogin=="cliente"){
+                $acaoLink="cliente/acoes.php";
                 //Procurar depois uma forma melhor de fazer isso
                 $acao = "esqueciSenha";
                 include('cliente/form.php');

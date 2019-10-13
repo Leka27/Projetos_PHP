@@ -16,7 +16,7 @@ case "esqueciSenha":
 			</div>
 			<div class="modal-body">
 				<p>Digite seu Login de cadastro para receber uma senha provisória por email</p>
-				<form method="post" id="form-esqueci-senha">
+				<form method="post" acaoLink="<?php echo $acaoLink?>" id="form-esqueci-senha">
 					<input type="hidden" name="acao" id="acao" value="esqueciSenha"/>
 					<div class="form-group">
 						<label for="loginEsqueci" class="col-form-label">Login:</label>
@@ -45,35 +45,36 @@ case "esqueciSenha":
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+			<p class="col-form-label">&nbsp;Campos * são obrigatórios.</p>
 			<div class="modal-body">
-				<form method="post" id="form-cadastrar_cliente">
+				<form method="post" acaoLink="<?php echo $acaoLink?>" id="form-cadastrar_cliente">
 					<input type="hidden" name="acao" id="acao" value="cadastrar"/>
 					<div class="form-group">
-						<label for="nome" class="col-form-label">Nome:</label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome" required/>
+						<label for="nomeCadastro" class="col-form-label">* Nome:</label>
+						<input type="text" class="form-control" id="nomeCadastro" placeholder="Nome" required/>
 					</div>
 					<div class="form-group">
-						<label for="cpfCliente" class="col-form-label">CPF:</label>
-						<input type="text" class="form-control" id="cpf" placeholder="CPF" required/>
+						<label for="cpfCadastro" class="col-form-label">* CPF:</label>
+						<input type="text" class="form-control" id="cpfCadastro" placeholder="CPF" required/>
 					</div>
 					<div class="form-group">
-						<label for="telefone" class="col-form-label">Telefone:</label>
-						<input type="tel" class="form-control" id="telefone" placeholder="(00)0000-0000" pattern="([0-9]{2})-[0-9]{5}-[0-9]{4}" required/>
+						<label for="telefoneCadastro" class="col-form-label">Telefone:</label>
+						<input type="tel" class="form-control" id="telefoneCadastro" placeholder="(00)0000-0000" pattern="([0-9]{2})-[0-9]{5}-[0-9]{4}" required/>
 					</div>
 					<div class="form-group">
-						<label for="data_nascimento" class="col-form-label">Nascimento:</label>
-						<input type="date" class="form-control" id="data_nascimento" placeholder="00/00/0000" required/>
+						<label for="data_nascimentoCadastro" class="col-form-label">* Nascimento:</label>
+						<input type="date" class="form-control" id="data_nascimentoCadastro" placeholder="00/00/0000" required/>
 					</div>
 					<div class="form-group">
-						<label for="loginCadastro" class="col-form-label">Login:</label>
+						<label for="loginCadastro" class="col-form-label">* Login:</label>
 						<input type="email" class="form-control" id="loginCadastro" placeholder="cliente@cliente.com" required/>
 					</div>
 					<div class="form-group">
-						<label for="senhaCadastro" class="col-form-label">Senha:</label>
+						<label for="senhaCadastro" class="col-form-label">* Senha:</label>
 						<input type="password" class="form-control" id="senhaCadastro" placeholder="*****" required/>
 					</div>
 					<div class="form-group">
-						<label for="confirmarSenha" class="col-form-label">Confirmar senha:</label>
+						<label for="confirmarSenha" class="col-form-label">* Confirmar senha:</label>
 						<input type="password" class="form-control" id="confirmarSenha" placeholder="*****" required/>
 					</div>
 				</form>
@@ -100,32 +101,33 @@ case "esqueciSenha":
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+			<p class="col-form-label">&nbsp; Campos * são obrigatórios.</p>
 			<div class="modal-body">
 				<form method="post" id="form-editar_cliente">
 					<input type="hidden" name="acao" id="acao" value="alterar"/>
 					<input type="hidden" name="cliente_id" id="cliente_id"/>
 					<div class="form-group">
-						<label for="nome" class="col-form-label">Nome:</label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome" required/>
+						<label for="nomeAlterar" class="col-form-label">* Nome:</label>
+						<input type="text" class="form-control" id="nomeAlterar" placeholder="Nome" required/>
 					</div>
 					<div class="form-group">
-						<label for="cpf" class="col-form-label">CPF:</label>
-						<input type="text" class="form-control" id="cpf" placeholder="CPF" required/>
+						<label for="cpfAlterar" class="col-form-label">* CPF:</label>
+						<input type="text" class="form-control" id="cpfAlterar" placeholder="CPF" required/>
 					</div>
 					<div class="form-group">
-						<label for="telefone" class="col-form-label">Telefone:</label>
-						<input type="text" class="form-control" id="telefone" placeholder="(00)0000-0000" required/>
+						<label for="telefoneAlterar" class="col-form-label">Telefone:</label>
+						<input type="text" class="form-control" id="telefoneAlterar" placeholder="(00)0000-0000" required/>
 					</div>
 					<div class="form-group">
-						<label for="data_nascimento" class="col-form-label">Nascimento:</label>
-						<input type="date" class="form-control" id="data_nascimento" placeholder="00/00/0000" required/>
+						<label for="data_nascimentoAlterar" class="col-form-label">* Nascimento:</label>
+						<input type="date" class="form-control" id="data_nascimentoAlterar" placeholder="00/00/0000" required/>
 					</div>
 					<div class="form-group">
-						<label for="loginAlterar" class="col-form-label">Login:</label>
+						<label for="loginAlterar" class="col-form-label">* Login:</label>
 						<input type="email" class="form-control" id="loginAlterar" placeholder="cliente@cliente.com" required/>
 					</div>
 					<div class="form-group">
-						<label for="senhaAlterar" class="col-form-label">Senha:</label>
+						<label for="senhaAlterar" class="col-form-label">* Senha:</label>
 						<input type="password" class="form-control" id="senhaAlterar" placeholder="*****" required/>
 					</div>
 				</form>
@@ -139,10 +141,6 @@ case "esqueciSenha":
 	</div>
 <?php
 	break;
-	
-	default:
-		# code...
-		break;
 }
 ?>
 

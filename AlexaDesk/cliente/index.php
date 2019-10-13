@@ -1,8 +1,6 @@
 <?php
   include_once('menu.php');
   $tituloPagina = "Pagina inicial";
-  
-
 ?>
 			<section class="wrapper"  style='margin-left:10%;'>
 				<div class="inner">

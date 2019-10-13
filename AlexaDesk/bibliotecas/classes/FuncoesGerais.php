@@ -58,7 +58,10 @@ class FuncoesGerais{
     }
 
     function deletarDados($tabela,$where){
-        $sql = "DELETE FROM {$tabela} WHERE {$where}";
+        if(!empty($where)){
+            $where = " WHERE ".$where;
+        }
+        $sql = "DELETE FROM {$tabela} {$where}";
 
         if ($this->connect->query($sql) === TRUE) {
             return true;
@@ -68,7 +71,10 @@ class FuncoesGerais{
     }
 
     function alterarDados($tabela,$campos,$where){
-        $sql = "UPDATE {$tabela} SET {$campos} WHERE {$where}";
+        if(!empty($where)){
+            $where = " WHERE ".$where;
+        }
+        $sql = "UPDATE {$tabela} SET {$campos} {$where}";
 
         if ($this->connect->query($sql) === TRUE) {
             return true;
@@ -78,7 +84,10 @@ class FuncoesGerais{
     }
 
     function selecionarDados($tabela,$campos,$joins,$where){
-        $sql = "SELECT {$campos} FROM {$tabela} {$joins} WHERE {$where}";
+        if(!empty($where)){
+            $where = " WHERE ".$where;
+        }
+        $sql = "SELECT {$campos} FROM {$tabela} {$joins} {$where}";
 
         $result = $this->connect->query($sql);
         $dados = array();

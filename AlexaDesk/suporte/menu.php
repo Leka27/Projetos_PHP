@@ -5,7 +5,6 @@
 
   include($_SERVER['DOCUMENT_ROOT']."/AlexaDesk/bibliotecas/classes/Suporte.php");
   $Suporte = new Suporte();
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -20,22 +19,30 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="funcoes.js"></script>
+		<!-- <script src="../chamado/funcoes.js"></script> -->
 	</head>
 	<body class="is-preload">
 		<header id="header">
 			<a class="logo" href="#"></a>
 			<nav>
-				<a href="#menu">Menu</a>
+				<a href="#menu"></a>
 			</nav>
 		</header>
 		<nav id="menu">
 			<ul class="links">
 				<li><a href="../suporte/index.php">Página inicial</a></li>
-				<li><a href="../chamado/index.php">Chamados</a></li>
+				<li><a href="../chamado/listaChamados.php">Chamados</a></li>
 				<li><a href="../cliente/listaClientes.php">Clientes</a></li>
-				<li><a href="../suporte/listaUsuarios.php">Usuários</a></li>
-				<li><a href="../suporte/pagina404.php">FAQ</a></li>
-				<li><a href="../suporte/pagina404.php">Relatórios</a></li>
+				<?php
+					// Permitir acesso aos menus para perfis diretor e administrador
+					if($_SESSION['suporte_perfil_usuario']!="suporte"){
+				?>
+					<li><a href="../suporte/listaUsuarios.php">Usuários</a></li>
+					<li><a href="../suporte/pagina404.php">FAQ</a></li>
+					<li><a href="../suporte/pagina404.php">Relatórios</a></li>
+				<?php
+					}
+				?>
 				<li><a href="../suporte/perfil.php">Perfil</a></li>
 				<li><a href="../index.php">Log Out</a></li>
 			</ul>

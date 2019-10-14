@@ -1,10 +1,9 @@
 <?php
-$idCliente = $_SESSION['cliente_id'];
 
 switch ($acao) {
 	case "cadastrar":
 ?>
-	<div class="modal fade" id="dialogCadastrarUsuarioSuporte" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" style="margin-top:50px;" id="dialogCadastrarUsuarioSuporte" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
@@ -39,8 +38,8 @@ switch ($acao) {
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				<button type="button" id="btn_cadastrar_usuario_suporte" class="btn btn-primary">Cadastrar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 			</div>
 			</div>
 		</div>
@@ -50,7 +49,7 @@ switch ($acao) {
 
 	case "alterar":
 ?>	
-	<div class="modal fade" id="dialogAlterarUsuarioSuporte" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" style="margin-top:50px;" id="dialogAlterarUsuarioSuporte" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
@@ -78,8 +77,8 @@ switch ($acao) {
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				<button type="button" id="btn_editar_usuario_suporte" class="btn btn-primary">Alterar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 			</div>
 			</div>
 		</div>

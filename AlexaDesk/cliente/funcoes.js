@@ -165,7 +165,7 @@ $(document).ready(function() {
         }).success(function(data) {
             var html = "";
             if (data == 0) {
-                html = "<tr><td colspan='4'>Nenhum cliente encontrado</td></tr>";
+                html = "<tr><td colspan='4' style='text-align:center'>Nenhum cliente encontrado</td></tr>";
             } else {
                 $.each(data.retorno, function(i, item) {
                     html = html + "<tr>" +

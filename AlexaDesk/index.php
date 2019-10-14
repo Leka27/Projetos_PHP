@@ -12,36 +12,58 @@
 		<link rel="stylesheet" href="front/css/main.css" />
 	</head>
 	<body class="is-preload">
-			<section class="wrapper">
-				<div class="inner">
-					<header class="special">
-						<h2>Entre para conhecer o SISTEMA AlexaDesk.</h2>
-						<p>Escolha a forma que deseja fazer o login:</p>
+		<header id="header">
+			<a class="logo" ></a>
+			<nav>
+				<a href="#menu"></a>
+			</nav>
+		</header>
+		<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="login.php?t=cliente">Portal cliente</a></li>
+				<li><a href="#">Sobre</a></li>s
+			</ul>
+		</nav>
+		<div id="heading" >
+			<h1>Sistema AlexaDesk</h1>
+		</div>
+		<section id="main" style="margin-left:10%" class="wrapper">
+			<div class="inner">
+				<div class="content">
+					<header>
+						<h2>Sistema AlexaDesk</h2>
 					</header>
-					<div class="highlights">
+					<p>Meu sistema de atendimento basico de suporte.</p>
+					<p>Credito do template utilizado: Templated.</p>
+				</div>
+			</div>
+		</section>
+
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
 						<section>
-							<div class="content">
-                                <a href="login.php?t=cliente" class="icon fa-vcard-o">
-                                    <span class="label">icone</span>
-                                    <h3>Cliente</h3>
-                                </a>
-							</div>
+							<p>Sistema criado como forma de avaliacao de conhecimentos.</p>
 						</section>
 						<section>
-							<div class="content">
-                                <a href="login.php" class="icon fa-vcard-o">
-                                    <span class="label">icone</span>
-                                    <h3>Suporte</h3>
-                                </a>
-                            </div>
+							<h4>Acessos</h4>
+							<ul class="alt">
+								<li><a href="login.php?t=cliente">Acesso portal cliente.</a></li>
+								<li><a href="login.php">Acesso portal suporte.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Links</h4>
+							<ul class="plain">
+								<li><a href="https://github.com/Leka27/Projetos_PHP/tree/master/AlexaDesk"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
 						</section>
 					</div>
-				</div>
-			</section>
-
-			<footer id="footer copyright">
-                &copy;Alexa.
-			</footer>
+					<div class="copyright">&copy;Alexa</a>.
+            </div>
+        </div>
+    </footer>
 
 		    <!-- Scripts -->
 			<script src="front/js/jquery.min.js"></script>

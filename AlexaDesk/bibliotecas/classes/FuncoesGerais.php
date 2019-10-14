@@ -29,6 +29,11 @@ class FuncoesGerais{
         }
     }
 
+    function tratarString($string){
+        $string = addslashes($string);
+        $string = $this->connect->real_escape_string($string);
+        return $string;
+    }
     
     function verificaSessao(){
         session_start();
@@ -75,7 +80,7 @@ class FuncoesGerais{
             $where = " WHERE ".$where;
         }
         $sql = "UPDATE {$tabela} SET {$campos} {$where}";
-
+        
         if ($this->connect->query($sql) === TRUE) {
             return true;
         } else {
@@ -83,13 +88,14 @@ class FuncoesGerais{
         }
     }
 
-    function selecionarDados($tabela,$campos,$joins,$where){
-        if(!empty($where)){
+    function selecionarDados($tabela,$campos,$joins="",$where="",$posWhere=""){
+        if($where!=""){
             $where = " WHERE ".$where;
         }
-        $sql = "SELECT {$campos} FROM {$tabela} {$joins} {$where}";
-
+        $sql = "SELECT {$campos} FROM {$tabela} {$joins} {$where} {$posWhere}";
+        
         $result = $this->connect->query($sql);
+
         $dados = array();
         if (!$this->connect->error) {
             if ($result->num_rows > 0) {
@@ -106,6 +112,9 @@ class FuncoesGerais{
     }
 
     function corrigeData($data, $removerTime = false) {
+        if($data==null){
+            return "-";
+        }
         // para lidar com o callback do grid
         $valor = $data;
         if (is_array($valor)) {
@@ -127,27 +136,7 @@ class FuncoesGerais{
             return $data;
         }
     }
-    
-    /**
-    * Formata uma data do formato brasileiro (dd/mm/yyyy) para o formato mysql (yyyy-mm-dd)
-    * 
-    * @param mixed $valor
-    * @return string
-    */
-    function corrigeDataInverte($valor) {
-        // para lidar com o callback do grid
-        if (is_array($valor)) {
-            if (empty($valor['campoAtual'])) { return ''; } 
-            $valor = $valor['campoAtual'];
-        }
-        $valor = explode('/', $valor);
-        $valor[2] = (int) $valor[2];
-        $data = @mktime(0, 0, 0, $valor[1], $valor[0], $valor[2]);
-        if(empty($data)){
-            return '';
-        }
-        return date("Y-m-d", $data);
-    }
+
 
     function loginUsuario($login,$senha,$tabela = "suporte"){
         $arrayRetorno = array();

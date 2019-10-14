@@ -4,8 +4,6 @@
 
     if(isset($_REQUEST['t']) && ($_REQUEST['t']=="cliente")){
         $tipoLogin = $_REQUEST['t'];
-    }else if(isset($_POST['tipoLogin']) && ($_POST['t']=="cliente")){
-        $tipoLogin = $_POST['tipoLogin'];
     }else{
         $tipoLogin = "suporte";
     }
@@ -30,8 +28,6 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
     </head>
@@ -43,7 +39,6 @@
                 </header>
                 <div class="highlights">
                     <form class="row gtr-uniform" id="form-login" method="post">
-                        <!-- <input type="hidden" name="logar" id="logar" value="true"/> -->
                         <input type="hidden" name="tipoLogin" id="tipoLogin" value="<?php echo $tipoLogin?>"/>
                         <input type="hidden" name="acao" id="acao" value="login"/>
                         <div class="col-12 col-12-xsmall">
@@ -56,6 +51,12 @@
                             <ul class="actions">
                                 <li><input type="button" id="btn_logar" value="Login" class="primary" /></li>
                                 <li><input type="reset" value="Limpar"/></li>
+                            </ul>
+                        </div>
+                        <div class="col-12" id="botoesCliente">
+                            <ul class="actions">
+                                <li><a href="#" data-toggle="modal" data-target="#dialogCadastrarCliente" class="button small">Cadastre-se</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#dialogEsqueciSenha" class="button small">Esqueci senha</a></li>
                             </ul>
                         </div>
                     </form>

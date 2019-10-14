@@ -40,8 +40,15 @@ $(document).ready(function() {
         });
     });
 
-    if ($('#tipoLogin').val() == 'cliente') {
-        $('.actions').append('<hr><ul class="actions"><li><button type="button" data-toggle="modal" data-target="#dialogCadastrarCliente" class="btn btn-warning">Cadastre-se</button></li><li><button type="button" data-toggle="modal" data-target="#dialogEsqueciSenha" class="btn btn-warning">Esqueci senha</button></li></ul>');
+    // if ($('#tipoLogin').val() == 'cliente') {
+    //     $('.actions').append('<hr><ul class="actions"><li><button type="button" data-toggle="modal" data-target="#dialogCadastrarCliente" class="btn btn-warning">Cadastre-se</button></li><li><button type="button" data-toggle="modal" data-target="#dialogEsqueciSenha" class="btn btn-warning">Esqueci senha</button></li></ul>');
+    // }
+
+    // if ($('#tipoLogin').val() == 'cliente') {
+    //     $('.actions').append('<hr><ul class="actions"><li><a href="#" data-toggle="modal" data-target="#dialogCadastrarCliente" class="button small">Cadastre-se</a></li><li><a href="#" data-toggle="modal" data-target="#dialogEsqueciSenha" class="button small">Esqueci senha</a></li></ul>');
+    // }
+    if ($('#tipoLogin').val() != 'cliente') {
+        $('#botoesCliente').html("");
     }
 
 });

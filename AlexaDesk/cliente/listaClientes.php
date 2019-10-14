@@ -6,23 +6,23 @@
         <div class="inner">
             <h3>Clientes</h3>
             <button type="button" data-toggle="modal" data-target="#dialogCadastrarCliente" class="primary">Cadastrar</button>
-            <form method="post" id="form-filtrar-cliente">
+            <form method="post" id="form-filtrar-cliente" style="width:100%">
                 <input type="hidden" name="acao" id="acao" value="filtrar"/>
                 <div style="width:80%;">
-                    <div class="form-group"  style="width:80%">
+                    <div class="form-group" style="width:70%">
                         <label for="filtroClientes"  class="col-form-label">Filtro:</label>
                         <input type="text" class="form-control" id="filtroClientes"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="width:70%">
 						<label for="tipoFiltro" class="col-form-label">Filtrar por:</label>
 						<select name="tipoFiltro" class="form-control" id="tipoFiltro">
 							<option value="nome">Nome</option>
 							<option value="id">Código</option>
 							<option value="cpf">CPF</option>
 							<option value="login">Login</option>
-						</select>
+                        </select>
+                        <button type="button" style="margin-top:5px;width:20%" id="btn_filtrar_clientes"><span  style="width:48%" class="ui-icon ui-icon-search"></span></button>
 					</div>
-                    <button type="button" style="width:20%" id="btn_filtrar_clientes"><img src="https://img.icons8.com/metro/26/000000/search.png"></button>
                 </div>
             </form>
             <div class="table-wrapper">

@@ -5,7 +5,7 @@ switch ($acao) {
 	
 case "esqueciSenha":
 ?>
-	<div class="modal fade" id="dialogEsqueciSenha" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" style="margin-top:50px;" id="dialogEsqueciSenha" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
@@ -25,8 +25,8 @@ case "esqueciSenha":
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				<button type="button" id="btn_enviar_senha" class="btn btn-primary">Enviar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 			</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@ case "esqueciSenha":
 
 	case "cadastrar":
 ?>
-	<div class="modal fade" id="dialogCadastrarCliente" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" style="margin-top:50px;" id="dialogCadastrarCliente" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
@@ -80,8 +80,8 @@ case "esqueciSenha":
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				<button type="button" id="btn_cadastrar_cliente" class="btn btn-primary">Cadastrar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 			</div>
 			</div>
 		</div>
@@ -92,7 +92,7 @@ case "esqueciSenha":
 	case "alterar":
 ?>
 	
-	<div class="modal fade" id="dialogAlterarCliente" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal fade" style="margin-top:50px;" id="dialogAlterarCliente" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
@@ -133,8 +133,8 @@ case "esqueciSenha":
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				<button type="button" id="btn_editar_cliente" class="btn btn-primary">Alterar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 			</div>
 			</div>
 		</div>

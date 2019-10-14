@@ -1497,6 +1497,12 @@ ul.actions.fit.stacked {
     width: 100%;
 }
 
+.dadosChamado {
+    width: 50%;
+    text-align: left;
+    float: left;
+}
+
 @media screen and (max-width: 480px) {
     ul.actions:not(.fixed) {
         -moz-flex-direction: column;
@@ -1505,6 +1511,9 @@ ul.actions.fit.stacked {
         flex-direction: column;
         margin-left: 0;
         width: 100% !important;
+    }
+    .dadosChamado {
+        width: 90% !important;
     }
     ul.actions:not(.fixed) li {
         -moz-flex-grow: 1;

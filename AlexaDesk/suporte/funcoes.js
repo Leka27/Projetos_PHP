@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // carregarUsuarios($('#filtroUsuarios').val(), $('#tipoFiltro').val());
     carregarUsuarios();
 
     $('#btn_cadastrar_usuario_suporte').on('click', function(event) {
@@ -54,7 +53,7 @@ $(document).ready(function() {
         }).done(function(data) {
             var html = "";
             if (data == 0) {
-                html = "<tr><td colspan='4'>Nenhum usuário encontrado</td></tr>";
+                html = "<tr><td colspan='4' style='text-align:center'>Nenhum usuário encontrado</td></tr>";
             } else {
                 $.each(data.retorno, function(i, item) {
                     html = html + "<tr>" +

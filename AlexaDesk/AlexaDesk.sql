@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.7.27 : Database - php_atendimento
+MySQL - 5.7.27 : Database - AlexaDesk
 *********************************************************************
 */
 
@@ -12,9 +12,29 @@ MySQL - 5.7.27 : Database - php_atendimento
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`php_atendimento` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`AlexaDesk` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `php_atendimento`;
+USE `AlexaDesk`;
+
+/*Table structure for table `chamado` */
+
+DROP TABLE IF EXISTS `chamado`;
+
+CREATE TABLE `chamado` (
+  `chamado_id` int(11) NOT NULL AUTO_INCREMENT,
+  `chamado_descricao` varchar(150) DEFAULT '',
+  `chamado_data_cadastro` date DEFAULT NULL,
+  `chamado_data_finalizado` date DEFAULT NULL,
+  `chamado_flag_status` varchar(2) DEFAULT 'P',
+  `chamado_cliente_id` int(11) DEFAULT '0',
+  `chamado_suporte_id` int(11) DEFAULT '0',
+  `chamado_assunto` varchar(255) DEFAULT '',
+  `chamado_motivo_id` int(11) DEFAULT '0',
+  `chamado_data_inicio_atendimento` date DEFAULT NULL,
+  PRIMARY KEY (`chamado_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `chamado` */
 
 /*Table structure for table `cliente` */
 
@@ -31,11 +51,40 @@ CREATE TABLE `cliente` (
   `cliente_data_cadastro` date DEFAULT NULL,
   `cliente_flag_ativo` varchar(2) DEFAULT 'S',
   PRIMARY KEY (`cliente_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`cliente_id`,`cliente_nome`,`cliente_login`,`cliente_senha`,`cliente_cpf`,`cliente_telefone`,`cliente_data_nascimento`,`cliente_data_cadastro`,`cliente_flag_ativo`) values (1,'Admin','Admin','e3afed0047b08059d0fada10f400c1e5','050.440.639-39','(41)9999-9999','1995-09-27','2019-10-07','S');
+/*Table structure for table `interacao` */
+
+DROP TABLE IF EXISTS `interacao`;
+
+CREATE TABLE `interacao` (
+  `interacao_id` int(11) NOT NULL AUTO_INCREMENT,
+  `interacao_descricao` varchar(150) DEFAULT '',
+  `interacao_data_cadastro` datetime DEFAULT NULL,
+  `interacao_cliente_id` int(11) DEFAULT NULL,
+  `interacao_chamado_id` int(11) DEFAULT NULL,
+  `interacao_suporte_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`interacao_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `interacao` */
+
+/*Table structure for table `motivo` */
+
+DROP TABLE IF EXISTS `motivo`;
+
+CREATE TABLE `motivo` (
+  `motivo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `motivo_prioridade` varchar(150) DEFAULT '',
+  `motivo_descricao` varchar(150) DEFAULT '',
+  PRIMARY KEY (`motivo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `motivo` */
+
+insert  into `motivo`(`motivo_id`,`motivo_prioridade`,`motivo_descricao`) values (1,'Baixa','Sem Motivo especifico'),(2,'Media','Duvida'),(3,'Baixa','Sugestao'),(4,'Alta','Reclamacao'),(5,'Baixa','Elogios'),(6,'Baixa','Outros'),(7,'Media','Servicos/Solicitacoes');
 
 /*Table structure for table `suporte` */
 
@@ -46,17 +95,15 @@ CREATE TABLE `suporte` (
   `suporte_nome` varchar(150) DEFAULT '',
   `suporte_login` varchar(150) DEFAULT '',
   `suporte_senha` varchar(50) DEFAULT '',
-  `suporte_cpf` varchar(20) DEFAULT '',
-  `suporte_telefone` varchar(20) DEFAULT '',
-  `suporte_data_nascimento` date DEFAULT NULL,
   `suporte_data_cadastro` date DEFAULT NULL,
   `suporte_flag_ativo` varchar(2) DEFAULT 'S',
+  `suporte_perfil_usuario` varchar(10) DEFAULT 'suporte',
   PRIMARY KEY (`suporte_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `suporte` */
 
-insert  into `suporte`(`suporte_id`,`suporte_nome`,`suporte_login`,`suporte_senha`,`suporte_cpf`,`suporte_telefone`,`suporte_data_nascimento`,`suporte_data_cadastro`,`suporte_flag_ativo`) values (1,'Admin','Admin','e3afed0047b08059d0fada10f400c1e5','050.440.639-39','(41)9999-9999','1995-09-27','2019-10-07','S');
+insert  into `suporte`(`suporte_id`,`suporte_nome`,`suporte_login`,`suporte_senha`,`suporte_data_cadastro`,`suporte_flag_ativo`,`suporte_perfil_usuario`) values (1,'Root','root@email.com','MTIzNA==',NULL,'S','diretor');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

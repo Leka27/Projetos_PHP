@@ -2,8 +2,7 @@
   include("../bibliotecas/classes/FuncoesGerais.php");
   $FuncoesGerais = new FuncoesGerais();
   $FuncoesGerais->verificaSessao();
-//   include($_SERVER['DOCUMENT_ROOT']."/AlexaDesk/bibliotecas/classes/Cliente.php");
-//   $Cliente = new Cliente();
+
 ?>
 <!DOCTYPE HTML>
 <html>

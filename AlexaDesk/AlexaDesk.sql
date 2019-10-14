@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `chamado`;
 
 CREATE TABLE `chamado` (
   `chamado_id` int(11) NOT NULL AUTO_INCREMENT,
-  `chamado_descricao` varchar(150) DEFAULT '',
+  `chamado_descricao` text,
   `chamado_data_cadastro` date DEFAULT NULL,
   `chamado_data_finalizado` date DEFAULT NULL,
   `chamado_flag_status` varchar(2) DEFAULT 'P',
@@ -54,22 +54,6 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `cliente` */
-
-/*Table structure for table `interacao` */
-
-DROP TABLE IF EXISTS `interacao`;
-
-CREATE TABLE `interacao` (
-  `interacao_id` int(11) NOT NULL AUTO_INCREMENT,
-  `interacao_descricao` varchar(150) DEFAULT '',
-  `interacao_data_cadastro` datetime DEFAULT NULL,
-  `interacao_cliente_id` int(11) DEFAULT NULL,
-  `interacao_chamado_id` int(11) DEFAULT NULL,
-  `interacao_suporte_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`interacao_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `interacao` */
 
 /*Table structure for table `motivo` */
 
